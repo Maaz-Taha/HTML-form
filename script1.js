@@ -25,20 +25,6 @@ function isValidEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
-function checkreq (arr){
-    arr.forEach(function(input)  {
-        // console.log(arr)
-        if (input.value === ""){
-            showError(input,`${getlabel(input)} is required `)
-        }else {
-            showSuccess(input);
-        }
-    });
-};
-function getlabel (input){
-    return input.parentElement.querySelector('label').innerText
-
-}
 
 
 
@@ -47,7 +33,36 @@ function getlabel (input){
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-    
-    checkreq([userName,email,password,password2])
+    // console.log("Submited");
 
+    //Check if username is empty
+    if (userName.value === '') {
+        showError(userName, "Username is required")
+    } else {
+        showSuccess(userName);
+    }
+
+
+    if (email.value === '') {
+        showError(email, "Email is required")
+    } else if(!isValidEmail(email.value)){
+        showError(email, 'Email is invalid')
+    } 
+    else {
+        showSuccess(email);
+    }
+
+
+    if (password.value === '') {
+        showError(password, "Password is required")
+    } else {
+        showSuccess(password);
+    }
+
+
+    if (password2.value === '') {
+        showError(password2, "Confirm Password is required")
+    } else {
+        showSuccess(password2);
+    }
 });
