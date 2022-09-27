@@ -20,9 +20,14 @@ function showSuccess(input) {
 
 }
 
-function isValidEmail(email) {
+function checkEmail(input) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    // return re.test(String(email).toLowerCase());
+    if (re.test(input.value.trim())){
+        showSuccess(input);
+    }else{
+        showError(input,"Please provide a valid email   ")
+    }
 }
 
 function checkreq (arr){
@@ -39,7 +44,18 @@ function getlabel (input){
     return input.parentElement.querySelector('label').innerText
 
 }
-
+function checklength(input, min, max){
+    if (input.value.length < min){
+        showError(input, `${getlabel(input)} needs to be at least ${min} characters`)
+    }else if(input.value.length > max){
+        showError(input, `${getlabel(input)} needs to be less than ${max} characters`)
+    }
+};
+function checkPass(input1, input2){
+    if (input1.value !== input2.value) {
+        showError(input2,"Passwords don't match")
+    }
+}
 
 
 //Event listeners
@@ -48,6 +64,9 @@ function getlabel (input){
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     
-    checkreq([userName,email,password,password2])
-
+    checkreq([userName,email,password,password2]);
+    checklength(userName,3,10);
+    checklength(password,6,20);
+    checkEmail(email);
+    checkPass(password,password2);
 });

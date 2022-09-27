@@ -22,8 +22,10 @@ body {
 }
 
 .container {
+    flex-direction: column;
     border-radius: 10px;
     width: 400px;
+    /* min-width: 200px; */
     box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
     /* padding:10px 30px; */
 }
@@ -74,7 +76,7 @@ button {
     color: white;
     font-size: 16px;
     font-weight: bold;
-    width: 30%;
+    /* width: 30%; */
     padding: 8px;
     margin-top: 5px;
     background-color: #00897b;
@@ -82,6 +84,8 @@ button {
     border-radius: 5px;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     display: block;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 /* .form_control.success input{
     /* border: 2px solid green;     
